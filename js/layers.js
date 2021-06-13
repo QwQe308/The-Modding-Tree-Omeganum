@@ -9,14 +9,12 @@ addLayer("a", {
     color: "#4BDC13",
     requires: new ExpantaNum(1), // Can be a function that takes requirement increases into account
     resource: "经验", // Name of prestige currency
-    baseResource: "?", // Name of resource prestige is based on
-    baseAmount() {return new ExpantaNum(1)}, // Get the current amount of baseResource
+    baseResource: "points", // Name of resource prestige is based on
+    baseAmount() {return player.points.sub(player.a.points)}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 1, // Prestige currency exponent
+    exponent: 0.25, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new ExpantaNum(player.points)
-        mult = mult.pow(0.25)
-        mult = mult.mul(player.a.points.pow(0.5).add(1)).sub(player.a.points)
+        var mult = mult.mul(player.a.points.pow(0.5).add(1))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
