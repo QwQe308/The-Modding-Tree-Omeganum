@@ -1,7 +1,5 @@
 // ************ Save stuff ************
 function save() {
-	NaNcheck(player)
-	if (NaNalert) return
 	localStorage.setItem(modInfo.id, btoa(unescape(encodeURIComponent(JSON.stringify(player)))));
 	localStorage.setItem(modInfo.id+"_options", btoa(unescape(encodeURIComponent(JSON.stringify(options)))));
   //ok it saved fine so the problem must be when loading
@@ -229,9 +227,6 @@ function setupModInfo() {
 	modInfo.changelog = changelog;
 	modInfo.winText = winText ? winText : `Congratulations! You have reached the end and beaten this game, but for now...`;
 
-}
-function fixNaNs() {
-	NaNcheck(player);
 }
 function exportSave() {
 	let str = btoa(JSON.stringify(player));
