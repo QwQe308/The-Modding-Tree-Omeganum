@@ -7,7 +7,7 @@ addLayer("a", {
 		points: new ExpantaNum(0),
     }},
     color: "#4BDC13",
-    requires() {layers.a.gainMult().gte(1)}, // Can be a function that takes requirement increases into account
+    requires() {return layers.a.gainMult().gte(1)}, // Can be a function that takes requirement increases into account
     resource: "经验", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -15,7 +15,7 @@ addLayer("a", {
     exponent: 1, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = player.points.pow(layers.a.gainExp())
-	    mult = mult.mul(player.a.points.pow(0.5).add(1.001))
+	    mult = mult.mul(player.a.points.pow(0.5).add(1))
         mult = mult.sub(player.a.points)
         mult = mult.div(player.points.pow(layers.a.gainExp()))
         return mult
