@@ -10,16 +10,18 @@ addLayer("a", {
     requires: new ExpantaNum(1), // Can be a function that takes requirement increases into account
     resource: "经验", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
-    baseAmount() {return player.points.sub(player.a.points)}, // Get the current amount of baseResource
+    baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 0.25, // Prestige currency exponent
+    exponent: 1, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        let mult = new ExpantaNum(1)
-	mult = mult.mul(player.a.points.pow(0.5).add(1))
+        let mult = player.points.pow(layers.a.gainExp())
+	    mult = mult.mul(player.a.points.pow(0.5).add(1))
+        mult = mult.sub(player.a.points)
+        mult = mult.div(player.points.pow(layers.a.gainExp()))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new ExpantaNum(1)
+        return new ExpantaNum(0.25)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
