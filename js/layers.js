@@ -7,10 +7,10 @@ addLayer("a", {
 		points: new ExpantaNum(0),
     }},
     color: "#4BDC13",
-    requires: new ExpantaNum(10), // Can be a function that takes requirement increases into account
+    requires: new ExpantaNum(2), // Can be a function that takes requirement increases into account
     resource: "prestige points", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
-    baseAmount() {return new ExpantaNum(1)}, // Get the current amount of baseResource
+    baseAmount() {return new ExpantaNum(2)}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 1, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
