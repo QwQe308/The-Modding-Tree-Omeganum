@@ -1,13 +1,13 @@
 let modInfo = {
-	name: "The Modding Tree",
-	id: "mymod",
+	name: "The Adventure Tree",
+	id: "The-Adventure-Tree",
 	author: "",
-	pointsName: "points",
+	pointsName: "准备",
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new ExpantaNum (10), // Used for hard resets and new players
+	initialStartPoints: new ExpantaNum (0), // Used for hard resets and new players
 	
-	offlineLimit: 1,  // In hours
+	offlineLimit: 0,  // In hours
 }
 
 // Set your version in num and name
@@ -33,7 +33,8 @@ function getStartPoints(){
 
 // Determines if it should show points/sec
 function canGenPoints(){
-	return true
+	if(hasMilestone("a", "0")) return true
+	return false
 }
 
 // Calculate points/sec!
@@ -42,6 +43,7 @@ function getPointGen() {
 		return new ExpantaNum(0)
 
 	let gain = new ExpantaNum(1)
+	gain=gain.add(buyableEffect("a",11))
 	return gain
 }
 
@@ -64,7 +66,7 @@ function isEndgame() {
 
 // You can change this if you have things that can be messed up by long tick lengths
 function maxTickLength() {
-	return(3600) // Default is 1 hour which is just arbitrarily large
+	return(0.05) // Default is 1 hour which is just arbitrarily large
 }
 
 // Use this if you need to undo inflation from an older version. If the version is older than the version that fixed the issue,
