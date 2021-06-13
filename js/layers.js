@@ -15,7 +15,7 @@ addLayer("a", {
     exponent: 1, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = player.points.pow(layers.a.gainExp())
-	    mult = mult.mul(player.a.points.pow(0.5).add(1))
+	    mult = mult.mul(player.a.points.pow(0.5).add(1.001))
         mult = mult.sub(player.a.points)
         mult = mult.div(player.points.pow(layers.a.gainExp()))
         return mult
