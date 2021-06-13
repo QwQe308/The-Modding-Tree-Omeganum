@@ -233,29 +233,6 @@ function setupModInfo() {
 function fixNaNs() {
 	NaNcheck(player);
 }
-function NaNcheck(data) {
-	for (item in data) {
-		if (data[item] == null) {
-		}
-		else if (Array.isArray(data[item])) {
-			NaNcheck(data[item]);
-		}
-		
-		else if (data[item] !== data[item] || checkDecimalNaN(data[item])) {
-			if (!NaNalert) {
-				confirm("Invalid value found in player, named '" + item + "'. Please let the creator of this mod know! You can refresh the page, and you will be un-NaNed.")
-				clearInterval(interval);
-				NaNalert = true;
-				return
-			}
-		}
-		else if (data[item] instanceof ExpantaNum) { // Convert to ExpantaNum
-		}
-		else if ((!!data[item]) && (data[item].constructor === Object)) {
-			NaNcheck(data[item]);
-		}
-	}
-}
 function exportSave() {
 	let str = btoa(JSON.stringify(player));
 
